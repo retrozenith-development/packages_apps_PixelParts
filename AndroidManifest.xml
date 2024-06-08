@@ -79,7 +79,7 @@
         </service>
 
         <!-- Battery info activity -->
-        <activity
+        <!-- <activity
             android:name=".batteryinfo.BatteryInfoActivity"
             android:label="@string/battery_info_title"
             android:exported="true">
@@ -92,7 +92,7 @@
             <meta-data
                 android:name="com.android.settings.summary"
                 android:resource="@string/battery_info_summary" />
-        </activity>
+        </activity> -->
 
         <!-- Battery info tile service -->
         <service  
