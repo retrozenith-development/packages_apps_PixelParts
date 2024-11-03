@@ -12,9 +12,6 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -30,7 +27,6 @@ import com.android.settingslib.widget.LayoutPreference;
 import org.evolution.pixelparts.Constants;
 import org.evolution.pixelparts.CustomSeekBarPreference;
 import org.evolution.pixelparts.R;
-import org.evolution.pixelparts.utils.TileUtils;
 
 import java.util.Arrays;
 
@@ -51,7 +47,6 @@ public class SaturationFragment extends PreferenceFragmentCompat
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.saturation, rootKey);
-        setHasOptionsMenu(true);
 
         LayoutPreference preview = findPreference(Constants.KEY_SATURATION_PREVIEW);
         addViewPager(preview);
@@ -65,11 +60,6 @@ public class SaturationFragment extends PreferenceFragmentCompat
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.saturation_menu, menu);
-    }
-
-    @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mSaturationPreference) {
             int seekBarValue = (Integer) newValue;
@@ -77,21 +67,6 @@ public class SaturationFragment extends PreferenceFragmentCompat
             return true;
         }
         return false;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.add_tile) {
-            TileUtils.requestAddTileService(
-                    getContext(),
-                    SaturationTileService.class,
-                    R.string.saturation_title,
-                    R.drawable.ic_saturation_tile
-            );
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
     }
 
     public void updateSaturation(int seekBarValue) {
